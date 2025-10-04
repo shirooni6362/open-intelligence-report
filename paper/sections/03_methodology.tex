@@ -1,0 +1,218 @@
+% ============== SECTION 3: METHODOLOGY ==============
+
+\section{Methodology}
+
+This section presents the analytical framework used to evaluate AI systems across dimensions of architectural openness and computational utility. The Openness-Utility Index provides a systematic method for quantifying characteristics that typically receive only qualitative assessment. We define scoring criteria for both openness and utility, explain data collection procedures, document the systems evaluated, and acknowledge limitations inherent in our approach.
+
+\subsection{The Openness-Utility Matrix Framework}
+
+The framework addresses a fundamental challenge in AI system evaluation: how to simultaneously assess transparency and performance in a manner that enables meaningful comparison across systems with different architectural philosophies. Existing evaluation approaches typically examine these dimensions in isolation, measuring either performance on specific benchmarks or qualitative assessments of openness without systematic quantification. Our framework integrates both dimensions into a unified analytical structure.
+
+\subsubsection{Defining Architectural Openness}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    component/.style={rectangle, draw, fill=blue!20, text width=6cm, text centered, rounded corners, minimum height=1.2cm, font=\small},
+    score/.style={rectangle, draw, fill=green!20, text width=2cm, text centered, rounded corners, minimum height=0.8cm, font=\footnotesize},
+    total/.style={rectangle, draw, fill=orange!30, text width=4cm, text centered, rounded corners, minimum height=1cm, font=\normalsize\bfseries},
+    arrow/.style={->, >=stealth, thick}
+]
+
+% Components
+\node[component] (c1) {Model Weights Transparency\\0=Closed API | 1=Restricted | 2=Fully Open};
+\node[component, below of=c1] (c2) {Training Data Transparency\\0=No Info | 1=Description | 2=Full Access};
+\node[component, below of=c2] (c3) {Training Process Reproducibility\\0=No Code | 1=Methodology | 2=Full Code};
+\node[component, below of=c3] (c4) {Inference Infrastructure Control\\0=Centralized | 1=Self-host | 2=Distributed};
+\node[component, below of=c4] (c5) {Governance Decentralization\\0=Corporate | 1=Advisory | 2=DAO/Community};
+
+% Scores
+\node[score, right=2cm of c1] (s1) {0-2 pts};
+\node[score, right=2cm of c2] (s2) {0-2 pts};
+\node[score, right=2cm of c3] (s3) {0-2 pts};
+\node[score, right=2cm of c4] (s4) {0-2 pts};
+\node[score, right=2cm of c5] (s5) {0-2 pts};
+
+% Total
+\node[total, below=2cm of c5] (total) {Total Openness Score\\0-10 points};
+
+% Arrows
+\draw[arrow] (c1) -- (s1);
+\draw[arrow] (c2) -- (s2);
+\draw[arrow] (c3) -- (s3);
+\draw[arrow] (c4) -- (s4);
+\draw[arrow] (c5) -- (s5);
+
+\draw[arrow] (s1) -- ++(1.5,0) |- (total);
+\draw[arrow] (s2) -- ++(1.5,0) |- (total);
+\draw[arrow] (s3) -- ++(1.5,0) |- (total);
+\draw[arrow] (s4) -- ++(1.5,0) |- (total);
+\draw[arrow] (s5) -- ++(1.5,0) |- (total);
+
+\end{tikzpicture}
+\caption{\textit{Openness Score calculation methodology showing five independent components each contributing 0-2 points based on architectural transparency characteristics, with aggregate scores ranging from 0 (completely closed) to 10 (maximum openness across all dimensions).}}
+\label{fig:openness_score}
+\end{figure}
+
+Architectural openness encompasses multiple distinct characteristics that collectively determine the degree to which AI systems enable transparency, reproducibility, and distributed control. We decompose openness into five components, each scored on a scale from zero to two points, yielding a total openness score ranging from zero to ten.
+
+\begin{equation}
+\text{Openness Score} = \sum_{i=1}^{5} C_i
+\end{equation}
+where $C_i \in \{0, 1, 2\}$ represents each component: Model Weights Transparency, Training Data Transparency, Training Process Reproducibility, Infrastructure Control, and Governance Decentralization.
+
+
+\textbf{Model Weights Transparency} evaluates the accessibility of trained model parameters that encode learned capabilities. This component receives a score of zero for completely closed systems that provide access exclusively through APIs, preventing users from examining or modifying model behavior. A score of one applies to systems that release weights under restricted licenses that limit commercial use, derivative works, or redistribution. Systems providing fully open weights under permissive licenses such as Apache 2.0 or MIT receive a score of two. This criterion reflects the most basic requirement for transparency: the ability to inspect and utilize model parameters without intermediation.
+
+\textbf{Training Data Transparency} assesses the degree to which organizations disclose information about the data used to train their systems. Systems that provide no information about training data composition, sources, or collection procedures receive a score of zero. Organizations that publish dataset descriptions including general categories of data sources but do not provide actual access to training data receive a score of one. Full transparency, scoring two points, requires both comprehensive documentation of data provenance and mechanisms for accessing or verifying training data composition. This criterion addresses reproducibility concerns and enables assessment of potential biases encoded during training.
+
+\textbf{Training Process Reproducibility} evaluates whether external researchers could theoretically reproduce training results given sufficient computational resources. Systems providing no code and minimal methodology documentation receive a score of zero. Organizations publishing detailed methodology papers that explain training procedures without releasing implementation code receive a score of one. Full reproducibility, scoring two points, requires publication of complete training code, hyperparameter configurations, and procedural details sufficient for replication. This component determines whether claimed capabilities can be independently verified and whether improvements can be built upon by other researchers.
+
+\textbf{Inference Infrastructure Control} assesses the degree to which users can operate systems independently rather than depending on provider-controlled infrastructure. Systems accessible only through centralized servers operated by the developing organization receive a score of zero. Systems supporting self-hosting but requiring substantial technical expertise or specialized hardware receive a score of one. Systems designed for distributed infrastructure that naturally operates across multiple independent nodes receive a score of two. This criterion reflects user autonomy and resilience against provider failures or policy changes.
+
+\textbf{Governance Decentralization} evaluates decision-making authority over system evolution, including model releases, license terms, and development priorities. Corporate-controlled systems where a single organization retains complete authority receive a score of zero. Systems with advisory boards or community input mechanisms where corporations maintain final decision authority receive a score of one. Community or decentralized autonomous organization governance structures where stakeholders collectively determine system direction receive a score of two. This component addresses long-term control and alignment of system development with broader community interests.
+
+The total openness score aggregates these five components, producing values between zero and ten. A score of zero indicates complete closure across all dimensions, while a score of ten represents maximum transparency and decentralization. Intermediate scores reflect partial openness along some dimensions while maintaining proprietary control along others.
+
+\subsubsection{Defining Computational Utility}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    component/.style={rectangle, draw, fill=purple!20, text width=6.5cm, text centered, rounded corners, minimum height=1.2cm, font=\small},
+    score/.style={rectangle, draw, fill=cyan!20, text width=2cm, text centered, rounded corners, minimum height=0.8cm, font=\footnotesize},
+    total/.style={rectangle, draw, fill=orange!30, text width=4cm, text centered, rounded corners, minimum height=1cm, font=\normalsize\bfseries},
+    arrow/.style={->, >=stealth, thick}
+]
+
+% Components
+\node[component] (c1) {Factual Retrieval Accuracy\\Measured by FRAMES, SimpleQA\\<50\%=0-1pt | 50-75\%=1-2pt | >75\%=2-3pt};
+\node[component, below of=c1, yshift=-0.3cm] (c2) {Complex Reasoning Capability\\Measured by SEAL-0, GPQA, MATH\\<50\%=0-1pt | 50-75\%=1-2pt | >75\%=2-3pt};
+\node[component, below of=c2, yshift=-0.3cm] (c3) {Multi-Agent Orchestration\\Task decomposition \& synthesis quality\\None=0pt | Basic=1pt | Sophisticated=2pt};
+\node[component, below of=c3, yshift=-0.3cm] (c4) {Real-World Application Breadth\\Number of use cases \& production deployments\\Limited=0pt | Moderate=1pt | Diverse=2pt};
+
+% Scores
+\node[score, right=2cm of c1] (s1) {0-3 pts};
+\node[score, right=2cm of c2] (s2) {0-3 pts};
+\node[score, right=2cm of c3] (s3) {0-2 pts};
+\node[score, right=2cm of c4] (s4) {0-2 pts};
+
+% Total
+\node[total, below=1.5cm of c4] (total) {Total Utility Score\\0-10 points};
+
+% Arrows
+\draw[arrow] (c1) -- (s1);
+\draw[arrow] (c2) -- (s2);
+\draw[arrow] (c3) -- (s3);
+\draw[arrow] (c4) -- (s4);
+
+\draw[arrow] (s1) -- ++(1.5,0) |- (total);
+\draw[arrow] (s2) -- ++(1.5,0) |- (total);
+\draw[arrow] (s3) -- ++(1.5,0) |- (total);
+\draw[arrow] (s4) -- ++(1.5,0) |- (total);
+
+\end{tikzpicture}
+\caption{\textit{Utility Score calculation methodology showing four components with weighted point allocations: factual retrieval and complex reasoning each contribute 0-3 points based on benchmark performance, while multi-agent orchestration and application breadth each contribute 0-2 points, yielding aggregate utility scores from 0 to 10.}}
+\label{fig:utility_score}
+\end{figure}
+
+Computational utility quantifies the practical value of AI systems through their performance on representative tasks and their breadth of applicable use cases. We decompose utility into four components scored on scales appropriate to each dimension, yielding total utility scores ranging from zero to ten.
+
+\begin{equation}
+\text{Utility Score} = F + R + M + A
+\label{eq:utility}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item $F \in [0, 3]$: Factual Retrieval Accuracy
+    \item $R \in [0, 3]$: Complex Reasoning Capability  
+    \item $M \in [0, 2]$: Multi-Agent Orchestration
+    \item $A \in [0, 2]$: Real-World Application Breadth
+\end{itemize}
+
+\textbf{Factual Retrieval Accuracy} measures the ability to locate and synthesize correct information from knowledge bases or external sources. This component receives zero to three points based on performance on standardized benchmarks including FRAMES \cite{frames2024} and SimpleQA \cite{simpleqa2024}. Systems achieving below 50 percent accuracy receive scores between zero and one point. Performance between 50 and 75 percent accuracy yields scores between one and two points. Systems exceeding 75 percent accuracy on these benchmarks receive scores between two and three points. Factual retrieval represents a fundamental capability for practical AI deployment, as inaccurate information provision undermines user trust and system utility.
+
+\textbf{Complex Reasoning Capability} assesses performance on tasks requiring multi-step inference, mathematical reasoning, or synthesis of information from multiple sources. This component similarly receives zero to three points based on benchmark performance including SEAL-0 \cite{sealqa2025}, GPQA, and MATH evaluations. The scoring scale mirrors factual retrieval: below 50 percent accuracy yields zero to one point, 50 to 75 percent yields one to two points, and above 75 percent yields two to three points. Complex reasoning capabilities distinguish systems capable of handling sophisticated tasks from those limited to pattern matching or information retrieval.
+
+\textbf{Multi-Agent Orchestration} evaluates the ability to coordinate multiple specialized agents or tools to accomplish complex tasks. This component receives zero to two points based on whether systems support multi-agent workflows and the quality of task decomposition and result synthesis. Systems lacking multi-agent capabilities receive zero points. Systems supporting basic agent coordination with limited sophistication in task decomposition receive one point. Systems demonstrating sophisticated orchestration with effective task planning and result integration receive two points. This capability becomes increasingly important as AI systems tackle problems requiring multiple specialized tools or knowledge domains.
+
+\textbf{Real-World Application Breadth} assesses the range of practical use cases where systems provide value and evidence of production deployment. This component receives zero to two points based on the diversity of viable applications and documented production usage. Systems limited to narrow use cases or lacking production deployment evidence receive scores near zero. Systems demonstrating moderate application breadth with some production usage receive one point. Systems supporting diverse use cases with substantial production deployment receive two points. This criterion captures whether systems provide theoretical capabilities that remain difficult to operationalize or whether they deliver practical value in real deployments.
+
+The total utility score aggregates these four components, producing values between zero and ten. Higher scores indicate systems providing greater practical value through accurate information provision, sophisticated reasoning, coordination capabilities, and deployment versatility.
+
+\subsubsection{The Openness-Utility Index}
+
+The Openness-Utility Index combines openness and utility scores while adjusting for centralization risks that may limit system accessibility or longevity. The index calculation proceeds as follows:
+
+\begin{equation}
+\text{OUI} = \frac{\text{Openness Score} \times \text{Utility Score}}{\text{Centralization Risk Factor}}
+\end{equation}
+
+where the Centralization Risk Factor adjusts for concentration of control that may undermine system sustainability:
+
+\begin{equation}
+\text{Centralization Risk Factor} = 1 + (0.1 \times \text{governance centralization}) + (0.1 \times \text{infrastructure centralization})
+\end{equation}
+
+The governance centralization component equals two minus the governance decentralization score, ranging from zero for fully decentralized governance to two for complete corporate control. The infrastructure centralization component equals two minus the infrastructure control score, ranging from zero for distributed infrastructure to two for centralized-only access.
+
+This formulation produces an index where higher values indicate systems achieving both openness and utility while minimizing centralization risks. The multiplicative relationship between openness and utility reflects that these properties provide complementary value: highly open systems with low utility or highly capable systems with complete closure both receive lower index values than systems achieving balanced performance across both dimensions.
+
+The centralization risk adjustment recognizes that concentrated control creates dependencies that may limit system longevity or accessibility. Systems requiring centralized infrastructure remain vulnerable to provider failures, policy changes, or access restrictions. Systems under corporate governance may shift licensing terms, discontinue services, or prioritize commercial interests over community needs. The adjustment factor increases index scores for systems that distribute control and reduce these dependencies.
+
+\subsection{Data Collection Methodology}
+
+Our evaluation relies on publicly available information including published benchmarks, technical documentation, and independent assessments. This approach enables systematic comparison while acknowledging limitations imposed by restricted access to proprietary system internals.
+
+\subsubsection{Benchmark Sources}
+
+Performance data comes from multiple sources depending on system availability and disclosure practices. For Sentient systems, we utilize published research including GitHub repositories \cite{ods_github2025, roma_github2025} and technical papers \cite{ods2025, roma2025} that document benchmark performance under standardized protocols. For OpenAI and Anthropic systems, we rely on official system cards, API documentation, and published evaluations that these organizations release periodically. Independent benchmark platforms including LMSys leaderboards and HuggingFace model evaluations provide third-party performance assessments when available.
+
+We prioritize benchmarks that evaluate capabilities relevant to practical deployment scenarios rather than narrowly optimized performance on specific datasets. The FRAMES benchmark \cite{frames2024} assesses factual retrieval and multi-hop reasoning through questions requiring information synthesis from multiple sources. SimpleQA \cite{simpleqa2024} evaluates short-form factuality on questions with single verifiable answers. SEAL-0 \cite{sealqa2025} tests search-augmented reasoning under adversarial conditions where retrieval results may contain conflicting or unhelpful information. These benchmarks collectively measure capabilities central to AI system utility rather than specialized performance on narrow tasks.
+
+Benchmark comparability presents challenges addressed through conservative interpretation of results. Different evaluation protocols, test conditions, and reporting practices complicate direct comparison across systems. We prioritize benchmarks using standardized datasets and methodologies where possible. When comparing results from different evaluation protocols, we note methodological differences and interpret performance gaps conservatively. Self-reported results receive scrutiny regarding potential selection bias in choosing favorable test conditions.
+
+\subsubsection{Scoring Process}
+
+To reduce subjective bias in openness assessment, we employ a structured scoring process. Two independent evaluators assign scores for each component of architectural openness based on publicly available documentation. Evaluators consult official documentation, GitHub repositories, technical papers, and licensing information to determine appropriate scores for each criterion.
+
+Disagreements between evaluators trigger a documentation review process where both evaluators examine source materials collectively and reach consensus through discussion. When information remains unclear or incomplete, we apply conservative scoring that assigns lower values rather than assuming undocumented openness. This approach produces scores that likely underestimate openness for systems with inadequate documentation while accurately reflecting openness for well-documented systems.
+
+Utility scoring follows a more objective process based on quantitative benchmark results. We record published performance numbers for each system on relevant benchmarks and apply the scoring rubrics defined in Section 3.1.2. When systems have not been evaluated on particular benchmarks, we assign conservative scores based on performance on similar tasks or leave specific components unscored and adjust total utility scores proportionally.
+
+\subsubsection{Systems Evaluated}
+
+Our primary comparison set includes six systems or system families representing different points on the openness spectrum:
+
+\textbf{Sentient} encompasses multiple components including Open Deep Search (ODS) for information retrieval \cite{ods2025}, Recursive Open Meta-Agent (ROMA) for multi-agent orchestration \cite{roma2025}, and the Dobby community-owned model \cite{dobby2025}. These systems claim to achieve both high openness through transparent architectures and competitive utility through strong benchmark performance. Evaluating Sentient's positioning on the openness-utility matrix represents a central objective of this analysis.
+
+\textbf{OpenAI} systems including GPT-4o and the o1 reasoning model family provide baseline performance for closed-source approaches. OpenAI maintains complete architectural secrecy while publishing selected benchmark results. The organization's systems establish performance targets that open alternatives must approach to achieve competitive utility.
+
+\textbf{Anthropic} develops the Claude model series with emphasis on AI safety through Constitutional AI approaches. Like OpenAI, Anthropic maintains closed architectures while publishing some evaluation results. The organization provides an additional reference point for closed-source performance.
+
+\textbf{Perplexity} represents specialized answer engine approaches that combine search with language models. The company's proprietary retrieval stack competes directly with open alternatives in the information retrieval domain. Perplexity's 20 billion dollar valuation \cite{perplexity2025} despite narrow focus demonstrates commercial viability of specialized closed systems.
+
+\textbf{DeepSeek} releases model weights under open licenses while keeping training processes and governance corporate-controlled. This hybrid approach provides a reference point for partial openness. DeepSeek's claimed cost efficiency \cite{deepseek_wikipedia2025} raises questions about whether resource constraints rather than architectural closure drive closed-source dominance.
+
+\textbf{Bittensor} pursues full decentralization through blockchain-based coordination and token governance. The system achieves maximum openness scores but has historically struggled with utility gaps compared to centralized alternatives. Bittensor's 3.2 billion dollar market capitalization \cite{bittensor_cmc2025} demonstrates some market validation despite performance limitations.
+
+This comparison set spans the full range of architectural approaches from completely closed through partial openness to full decentralization, enabling systematic assessment of the openness-utility relationship across diverse systems.
+
+\subsection{Limitations and Biases}
+
+Several important limitations constrain the conclusions we can draw from this analysis. Acknowledging these limitations provides appropriate context for interpreting our findings.
+
+Self-reported benchmarks may not enable direct comparison across systems. Organizations typically evaluate their systems under conditions optimized for favorable results. Test set selection, hyperparameter tuning, and cherry-picking of strong performance results can inflate reported performance relative to typical usage conditions. We address this limitation through conservative interpretation of performance gaps and preference for independent benchmark evaluations when available. Results should be understood as approximate indicators of relative capability rather than precise performance measurements.
+
+Openness scoring necessarily involves subjective interpretation despite our structured evaluation process. Determining whether documentation sufficiently enables reproducibility or whether governance structures genuinely distribute control requires judgment calls. Different evaluators might reasonably assign different scores based on their interpretation of available evidence. Our two-evaluator process with consensus requirements reduces but does not eliminate this subjectivity. Scores should be understood as informed assessments rather than objective measurements.
+
+This analysis represents a snapshot in time as of the first quarter of 2025. The AI field evolves rapidly, with new models, capabilities, and architectural approaches emerging frequently. Systems that currently exhibit particular openness or utility characteristics may change substantially within months. Performance gaps may narrow or widen as organizations release updated models. Our findings describe the current state while recognizing that conditions may shift before this report reaches readers.
+
+Limited access to proprietary system internals constrains our ability to verify claims or assess undocumented characteristics. Closed-source systems may possess capabilities or limitations not reflected in published benchmarks. Training data composition, fine-tuning procedures, and architectural details that substantially impact performance remain hidden. Our analysis necessarily relies on disclosed information, which may present incomplete pictures of system characteristics.
+
+Benchmark selection bias may favor systems optimized for particular evaluation protocols. The benchmarks we emphasize measure important capabilities, but they do not comprehensively assess all aspects of system utility. Systems excelling on selected benchmarks might perform less well on other tasks. Organizations aware of benchmark emphasis may optimize specifically for measured capabilities. Our selection of multiple benchmarks assessing different capabilities partially addresses this concern, but comprehensive utility assessment remains elusive.
+
+Despite these limitations, our framework provides systematic comparison previously unavailable in AI system evaluation. The methodology enables rigorous assessment of the openness-utility relationship while maintaining appropriate epistemic humility about conclusions that extend beyond available evidence.
