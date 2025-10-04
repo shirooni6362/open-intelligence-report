@@ -1,1 +1,709 @@
 
+\documentclass[10pt,a4paper]{article}
+
+% ============== PACKAGES ==============
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage[hyphens]{url}
+\usepackage{xurl} % smarter URL breaking
+\usepackage[colorlinks=true, breaklinks=true, urlcolor=blue, linkcolor=blue, citecolor=blue]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric}
+\usepackage{enumitem}
+\usepackage{times} % Similar to Google's font
+
+% ============== PAGE SETUP ==============
+\geometry{
+    a4paper,
+    left=2.5cm,
+    right=2.5cm,
+    top=3cm,
+    bottom=2.5cm,
+    footskip=1cm,
+    headheight=1.5cm,
+    headsep=0.5cm
+}
+
+% ============== HYPERLINK COLORS ==============
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    citecolor=blue,
+    urlcolor=blue,
+    pdftitle={The Open Intelligence Paradigm},
+    pdfauthor={Your Name}
+}
+
+% ============== HEADER/FOOTER SETUP ==============
+\pagestyle{fancy}
+\fancyhf{} % Clear all headers and footers
+
+% First page header (will be overridden)
+\fancypagestyle{firstpage}{
+    \fancyhf{}
+    \fancyhead[L]{\raisebox{-0.6cm}{\includegraphics[height=1.2cm]{logo.png}}} % Bigger logo, lowered
+    \fancyhead[R]{\raisebox{-0.1cm}{2025-10-5}} % Slightly lowered date
+    \fancyfoot[C]{\rule{0.9\textwidth}{0.4pt}}
+    \fancyfoot[R]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% Subsequent pages header
+\fancyhead[L]{}
+\fancyhead[C]{\small\textit{The Open Intelligence Paradigm: A Quantitative Analysis}}
+\fancyhead[R]{}
+\fancyfoot[C]{\rule{0.9\textwidth}{0.4pt}}
+\fancyfoot[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ============== SECTION FORMATTING ==============
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsection}{0.5em}{}
+
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+\titlespacing*{\subsection}{0pt}{10pt}{5pt}
+\titlespacing*{\subsubsection}{0pt}{8pt}{4pt}
+
+% ============== CUSTOM COMMANDS ==============
+\newcommand{\papertitle}[1]{%
+    {\LARGE\bfseries #1}%
+}
+
+\newcommand{\papersubtitle}[1]{%
+    {\large\textit{#1}}%
+}
+
+\newcommand{\authorlist}[1]{%
+    {\normalsize #1}%
+}
+
+% ============== DOCUMENT START ==============
+\begin{document}
+
+\thispagestyle{firstpage}
+
+% Top line under logo/date
+\noindent\rule{\textwidth}{0.4pt}
+
+\vspace{1em}
+
+% ============== TITLE ==============
+\begin{center}
+\papertitle{The Open Intelligence Paradigm: A Quantitative Analysis of Architectural Openness and Computational Utility in Contemporary AI Systems}
+
+\vspace{0.5em}
+
+\papersubtitle{Why Decentralized AI Infrastructure Will Dominate the Next Decade}
+
+\vspace{1.5em}
+
+% ============== AUTHORS ==============
+\authorlist{Shiro Oni \\ }
+
+
+\vspace{0.5em}
+
+
+
+\end{center}
+
+\vspace{1em}
+
+% Bottom line before content
+\noindent\rule{\textwidth}{0.4pt}
+
+\vspace{1em}
+
+% ============== ABSTRACT ==============
+\begin{abstract}
+\noindent
+This technical report presents a quantitative framework for evaluating the relationship between architectural openness and computational performance in contemporary artificial intelligence systems. The central question examined is whether decentralized, open-source AI architectures can achieve competitive utility compared to proprietary closed-source systems. We introduce the Openness-Utility Index, a multidimensional scoring methodology that systematically assesses AI systems across ten distinct criteria spanning model transparency, infrastructure decentralization, governance structures, factual retrieval accuracy, reasoning capability, and multi-agent orchestration performance. 
+
+Through systematic analysis of publicly available benchmark results from FRAMES (factual retrieval and multi-hop reasoning), SimpleQA (short-form factuality), and SEAL-0 (search-augmented reasoning under adversarial conditions), we evaluate six major AI systems: Sentient's Open Deep Search and ROMA frameworks, OpenAI's GPT-4o, Anthropic's Claude 3.5 Sonnet, Perplexity's answer engine, and DeepSeek V3. Our analysis reveals that Sentient represents the first documented case of an AI system achieving both maximum architectural openness (10/10 on our scoring framework) and competitive computational utility (8.0/10), with published benchmark results showing 75.3 percent accuracy on FRAMES and 45.6 percent on SEAL-0, compared to estimated performance ranges of 60-65 percent and 17-36 percent respectively for competing systems.
+
+To contextualize these findings, we examine historical adoption patterns in open-source infrastructure technologies, documenting Linux's trajectory to 96.3 percent server market dominance over 17 years, Android's capture of 73.9 percent mobile market share within 5 years, and Kubernetes' achievement of 96 percent enterprise adoption in 5 years. This historical analysis establishes an empirical basis for projecting that modern open-source projects in rapidly evolving technical domains achieve market dominance within 5 to 7 years. We discuss the architectural innovations enabling Sentient's performance, including cryptographic model fingerprinting for provenance tracking, distributed compute orchestration, and community-governed alignment mechanisms. The report concludes by examining implications for AI development practices, enterprise adoption strategies, and governance frameworks in an evolving landscape where the traditional trade-off between openness and performance may no longer hold.
+\end{abstract}
+
+\vspace{1em}
+
+\noindent\textbf{Keywords:} Open-source AI, Decentralized Intelligence, AGI Infrastructure, Sentient Protocol, Benchmark Analysis, AI Governance
+
+\vspace{1em}
+
+\noindent\rule{\textwidth}{0.4pt}
+
+% ============== IMPORT SECTIONS ==============
+
+\input{01_introduction}
+
+\input{02_literature_review}
+
+\input{03_methodology}
+
+\input{04_analysis}
+
+\input{05_discussion}
+
+\input{06_implications}
+
+\input{07_conclusion}
+
+% ============== REFERENCES ==============
+\newpage
+\bibliographystyle{plain}
+\begin{thebibliography}{99}
+
+% ========== CATEGORY 1: HISTORICAL OPEN-SOURCE CASE STUDIES ==========
+
+% Linux Statistics
+\bibitem{linux_truelist2024}
+TrueList (2024).
+\textit{Linux Statistics 2024}.
+Retrieved from \url{https://truelist.co/blog/linux-statistics/}
+
+\bibitem{linux_enterpriseapps2017}
+Enterprise Apps Today (2017).
+\textit{Linux Statistics}.
+Retrieved from \url{https://www.enterpriseappstoday.com/stats/linux-statistics.html}
+
+\bibitem{linux_sqmagazine2025}
+SQ Magazine (2025).
+\textit{Linux Statistics}.
+Retrieved from \url{https://sqmagazine.co.uk/linux-statistics/}
+
+\bibitem{linux_scitech2025}
+Sci-Tech Today (2025).
+\textit{Linux Statistics}.
+Retrieved from \url{https://www.sci-tech-today.com/stats/linux-statistics/}
+
+\bibitem{linux_wikipedia2025}
+Wikipedia (2025).
+\textit{Usage Share of Operating Systems}.
+Retrieved from \url{https://en.wikipedia.org/wiki/Usage_share_of_operating_systems}
+
+% Android Statistics
+\bibitem{android_demandsage2025}
+Demand Sage (2025).
+\textit{Android Statistics 2025}.
+Retrieved from \url{https://www.demandsage.com/android-statistics/}
+
+\bibitem{android_enterpriseapps2024}
+Enterprise Apps Today (2024).
+\textit{Android Statistics}.
+Retrieved from \url{https://www.enterpriseappstoday.com/stats/android-statistics.html}
+
+\bibitem{android_ioscomparison2024}
+Demand Sage (2024).
+\textit{iPhone vs Android Users Statistics}.
+Retrieved from \url{https://www.demandsage.com/iphone-vs-android-users/}
+
+% Kubernetes Statistics
+\bibitem{kubernetes_edgedelta2024}
+Edge Delta (2024).
+\textit{Kubernetes Adoption Statistics 2024}.
+Retrieved from \url{https://edgedelta.com/company/blog/kubernetes-adoption-statistics}
+
+\bibitem{kubernetes_datahub2024}
+DataHub Analytics (2024).
+\textit{Kubernetes Adoption and Market Trends}.
+Retrieved from \url{https://datahubanalytics.com/kubernetes-adoption-and-market-trends/}
+
+\bibitem{kubernetes_unyaml2024}
+Unyaml (2024).
+\textit{Kubernetes Statistics}.
+Retrieved from \url{https://unyaml.com/blog/kubernetes-statistics}
+
+\bibitem{kubernetes_spectrocloud2024}
+Spectro Cloud (2024).
+\textit{Ten Essential Insights into the State of Kubernetes in the Enterprise in 2024}.
+Retrieved from \url{https://www.spectrocloud.com/blog/ten-essential-insights-into-the-state-of-kubernetes-in-the-enterprise-in-2024}
+
+\bibitem{kubernetes_cncf2024}
+Cloud Native Computing Foundation (2024).
+\textit{The Voice of Kubernetes Experts Report 2024}.
+Retrieved from \url{https://www.cncf.io/blog/2024/06/06/the-voice-of-kubernetes-experts-report-2024-the-data-trends-driving-the-future-of-the-enterprise/}
+
+% Apache HTTP Server Statistics
+\bibitem{apache_monitorus2025}
+Monitor.us (2025).
+\textit{Web Servers Market Share 2025}.
+Retrieved from \url{https://www.monitor.us/web-servers-market-share/}
+
+\bibitem{apache_netcraft2024}
+Netcraft (2024).
+\textit{January 2024 Web Server Survey}.
+Retrieved from \url{https://www.netcraft.com/blog/january-2024-web-server-survey}
+
+\bibitem{apache_webtechsurvey2024}
+WebTechSurvey (2024).
+\textit{Apache Web Server Technology Statistics}.
+Retrieved from \url{https://webtechsurvey.com/technology/apache}
+
+\bibitem{apache_neterra2024}
+Neterra Blog (2024).
+\textit{The History of the Apache HTTP Server: How It All Came Together}.
+Retrieved from \url{https://blog.neterra.cloud/en/the-history-of-the-apache-http-server-how-it-all-came-together/}
+
+% WordPress Statistics
+\bibitem{wordpress_kinsta2025}
+Kinsta (2025).
+\textit{WordPress Market Share Statistics}.
+Retrieved from \url{https://kinsta.com/wordpress-market-share/}
+
+\bibitem{wordpress_official2025}
+WordPress.com (2025).
+\textit{WordPress Market Share 2025}.
+Retrieved from \url{https://wordpress.com/blog/2025/04/17/wordpress-market-share/}
+
+\bibitem{wordpress_barn2_2025}
+Barn2 (2025).
+\textit{WordPress Market Share Statistics}.
+Retrieved from \url{https://barn2.com/blog/wordpress-market-share/}
+
+\bibitem{wordpress_mobiloud2025}
+MobiLoud (2025).
+\textit{WordPress Market Share Statistics}.
+Retrieved from \url{https://www.mobiloud.com/blog/wordpress-market-share}
+
+\bibitem{wordpress_wpbeginner2025}
+WP Beginner (2025).
+\textit{Ultimate List of WordPress Stats, Facts and Other Research}.
+Retrieved from \url{https://www.wpbeginner.com/research/ultimate-list-of-wordpress-stats-facts-and-other-research/}
+
+\bibitem{wordpress_manaferra2025}
+Manaferra (2025).
+\textit{WordPress Statistics 2025}.
+Retrieved from \url{https://www.manaferra.com/wordpress-statistics/}
+
+% ========== CATEGORY 2: AI COMPANY VALUATIONS & MARKET DATA ==========
+
+% OpenAI
+\bibitem{openai2025}
+Bloomberg (2025).
+\textit{OpenAI Completes Share Sale at Record \$500 Billion Valuation}.
+Retrieved from \url{https://www.bloomberg.com/news/articles/2025-10-02/openai-completes-share-sale-at-record-500-billion-valuation}
+
+\bibitem{openai_cnbc2025}
+CNBC (2025).
+\textit{OpenAI Share Sale at \$500 Billion Valuation}.
+Retrieved from \url{https://www.cnbc.com/2025/10/02/openai-share-sale-500-billion-valuation.html}
+
+\bibitem{openai_techcrunch2025}
+TechCrunch (2025).
+\textit{OpenAI is the World's Most Valuable Private Company After Private Stock Sale}.
+Retrieved from \url{https://techcrunch.com/2025/10/02/openai-is-the-worlds-most-valuable-private-company-after-private-stock-sale/}
+
+\bibitem{openai_foxbusiness2025}
+Fox Business (2025).
+\textit{OpenAI Becomes World's Most Valuable Private Company at \$500B Valuation}.
+Retrieved from \url{https://www.foxbusiness.com/markets/openai-becomes-worlds-most-valuable-private-company-500b-valuation-report}
+
+\bibitem{openai_sacra2025}
+Sacra (2025).
+\textit{OpenAI Company Profile}.
+Retrieved from \url{https://sacra.com/c/openai/}
+
+% Anthropic
+\bibitem{anthropic2025}
+Anthropic (2025).
+\textit{Anthropic Raises Series F at USD 183B Post-Money Valuation}.
+Retrieved from \url{https://www.anthropic.com/news/anthropic-raises-series-f-at-usd183b-post-money-valuation}
+
+\bibitem{anthropic_cnbc2025}
+CNBC (2025).
+\textit{Anthropic Raises \$13 Billion at \$183 Billion Valuation}.
+Retrieved from \url{https://www.cnbc.com/2025/09/02/anthropic-raises-13-billion-at-18-billion-valuation.html}
+
+\bibitem{anthropic_techcrunch2025}
+TechCrunch (2025).
+\textit{Anthropic Raises \$13B Series F at \$183B Valuation}.
+Retrieved from \url{https://techcrunch.com/2025/09/02/anthropic-raises-13b-series-f-at-183b-valuation/}
+
+\bibitem{anthropic_bloomberg2025}
+Bloomberg (2025).
+\textit{Anthropic Completes New Funding Round at \$183 Billion Valuation}.
+Retrieved from \url{https://www.bloomberg.com/news/articles/2025-09-02/anthropic-completes-new-funding-round-at-183-billion-valuation}
+
+\bibitem{anthropic_tracxn2025}
+Tracxn (2025).
+\textit{Anthropic Funding and Investors}.
+Retrieved from \url{https://tracxn.com/d/companies/anthropic/__SzoxXDMin-NK5tKB7ks8yHr6S9Mz68pjVCzFEcGFZ08/funding-and-investors}
+
+% xAI
+\bibitem{xai_cnbc2025}
+CNBC (2025).
+\textit{Musk's xAI Raises \$10 Billion at \$200 Billion Valuation}.
+Retrieved from \url{https://www.cnbc.com/2025/09/19/musks-xai-10-billion-at-200-billion-valuation.html}
+
+\bibitem{xai_bloomberg2025}
+Bloomberg (2025).
+\textit{Musk's xAI Raises \$10 Billion at \$200 Billion Valuation}.
+Retrieved from \url{https://www.bloomberg.com/news/articles/2025-09-19/musk-s-xai-raises-10-billion-at-200-billion-valuation}
+
+\bibitem{xai_yahoo2025}
+Yahoo Finance (2025).
+\textit{xAI Valuation Estimate}.
+Retrieved from \url{https://finance.yahoo.com/quote/XAAI.PVT/}
+
+\bibitem{xai_tomshardware2025}
+Tom's Hardware (2025).
+\textit{Elon Musk's xAI is Projected to Lose USD 13 Billion in 2025}.
+Retrieved from \url{https://www.tomshardware.com/tech-industry/artificial-intelligence/elon-musks-xai-is-projected-to-lose-usd13-billion-in-2025-ai-project-burns-usd1-billion-a-month-in-expenditures}
+
+\bibitem{xai_fortune2025}
+Fortune (2025).
+\textit{Musk's xAI Startup Bought X (Twitter) at \$33 Billion Valuation}.
+Retrieved from \url{https://fortune.com/2025/03/28/musk-xai-startup-bought-x-twitter-33-billion-valuation/}
+
+% Perplexity AI
+\bibitem{perplexity2025}
+TechCrunch (2025).
+\textit{Perplexity Reportedly Raised \$200M at \$20B Valuation}.
+Retrieved from \url{https://techcrunch.com/2025/09/10/perplexity-reportedly-raised-200m-at-20b-valuation/}
+
+\bibitem{perplexity_techfunding2025}
+TechFundingNews (2025).
+\textit{Perplexity Raises \$200M at \$20B Valuation}.
+Retrieved from \url{https://techfundingnews.com/perplexity-raises-200m-at-20b-valuation-ai-search/}
+
+\bibitem{perplexity_bloomberg2025}
+Bloomberg (2025).
+\textit{AI Startup Perplexity Valued at \$18 Billion with New Funding}.
+Retrieved from \url{https://www.bloomberg.com/news/articles/2025-07-17/ai-startup-perplexity-valued-at-18-billion-with-new-funding}
+
+\bibitem{perplexity_pymnts2025}
+PYMNTS (2025).
+\textit{Perplexity AI Hits \$18 Billion Valuation in Latest Funding Round}.
+Retrieved from \url{https://www.pymnts.com/artificial-intelligence-2/2025/perplexity-ai-hits-18-billion-valuation-in-latest-funding-round/}
+
+\bibitem{perplexity_cnbc_may2025}
+CNBC (2025).
+\textit{Perplexity Funding Round Comet}.
+Retrieved from \url{https://www.cnbc.com/2025/05/12/perplexity-funding-round-comet.html}
+
+\bibitem{perplexity_demandsage2025}
+Demand Sage (2025).
+\textit{Perplexity AI Statistics}.
+Retrieved from \url{https://www.demandsage.com/perplexity-ai-statistics/}
+
+% DeepSeek
+\bibitem{deepseek_techcrunch2025}
+TechCrunch (2025).
+\textit{DeepSeek: Everything You Need to Know About the AI Chatbot App}.
+Retrieved from \url{https://techcrunch.com/2025/09/29/deepseek-everything-you-need-to-know-about-the-ai-chatbot-app/}
+
+\bibitem{deepseek_pitchbook2025}
+PitchBook (2025).
+\textit{DeepSeek Company Profile}.
+Retrieved from \url{https://pitchbook.com/profiles/company/60645691}
+
+\bibitem{deepseek_wikipedia2025}
+Wikipedia (2025).
+\textit{DeepSeek}.
+Retrieved from \url{https://en.wikipedia.org/wiki/DeepSeek}
+
+\bibitem{deepseek_carnegie2025}
+Carnegie Endowment (2025).
+\textit{DeepSeek AI China Chips Explainer}.
+Retrieved from \url{https://carnegieendowment.org/emissary/2025/01/deepseek-ai-china-chips-explainer}
+
+\bibitem{deepseek_aljazeera2025}
+Al Jazeera (2025).
+\textit{Why China's AI Startup DeepSeek is Sending Shockwaves Through Global Tech}.
+Retrieved from \url{https://www.aljazeera.com/economy/2025/1/28/why-chinas-ai-startup-deepseek-is-sending-shockwaves-through-global-tech}
+
+% Bittensor
+\bibitem{bittensor_cmc2025}
+CoinMarketCap (2025).
+\textit{Bittensor Price and Market Data}.
+Retrieved from \url{https://coinmarketcap.com/currencies/bittensor/}
+
+\bibitem{bittensor_bitget2025}
+Bitget (2025).
+\textit{Bittensor (TAO) Price}.
+Retrieved from \url{https://www.bitget.com/price/bittensor}
+
+\bibitem{bittensor_prediction2025}
+CoinMarketCap AI (2025).
+\textit{Bittensor Price Prediction}.
+Retrieved from \url{https://coinmarketcap.com/cmc-ai/bittensor/price-prediction/}
+
+% ========== CATEGORY 3: AI BENCHMARKS - FULL DATA ==========
+
+% FRAMES Benchmark
+\bibitem{frames2024}
+Alzubi, S., Brooks, C., Chiniya, P., Contente, E., von Gerlach, C., Irwin, L., Jiang, Y., Kaz, A., Nguyen, W., Oh, S., Tyagi, H., and Viswanath, P. (2024).
+\textit{FRAMES: Factuality, Retrieval, And reasoning MEasurement Set}.
+arXiv preprint arXiv:2409.12941.
+Retrieved from \url{https://arxiv.org/abs/2409.12941}
+
+\bibitem{frames_huggingface2024}
+Google Research (2024).
+\textit{FRAMES Benchmark Dataset}.
+Hugging Face. Retrieved from \url{https://huggingface.co/datasets/google/frames-benchmark}
+
+\bibitem{frames_marktech2024}
+MarkTechPost (2024).
+\textit{Google Releases FRAMES: A Comprehensive Evaluation Dataset for RAG Applications}.
+Retrieved from \url{https://www.marktechpost.com/2024/10/01/google-releases-frames-a-comprehensive-evaluation-dataset-designed-to-test-retrieval-augmented-generation-rag-applications-on-factuality-retrieval-accuracy-and-reasoning/}
+
+\bibitem{frames_pureai2024}
+Pure AI (2024).
+\textit{Google Unveils FRAMES Dataset}.
+Retrieved from \url{https://pureai.com/Articles/2024/10/07/Google-Unveils-FRAMES-Dataset.aspx}
+
+% SimpleQA Benchmark
+\bibitem{simpleqa2024}
+OpenAI (2024).
+\textit{Introducing SimpleQA}.
+Retrieved from \url{https://openai.com/index/introducing-simpleqa/}
+
+\bibitem{simpleqa_arxiv2024}
+OpenAI (2024).
+\textit{SimpleQA: Simple Question Answering for Factuality}.
+arXiv preprint arXiv:2411.04368.
+Retrieved from \url{https://arxiv.org/html/2411.04368v1}
+
+\bibitem{simpleqa_github2024}
+OpenAI (2024).
+\textit{Simple Evals Repository}.
+GitHub. Retrieved from \url{https://github.com/openai/simple-evals}
+
+\bibitem{simpleqa_kaggle2024}
+OpenAI (2024).
+\textit{SimpleQA Benchmark Leaderboard}.
+Kaggle. Retrieved from \url{https://www.kaggle.com/benchmarks/openai/simpleqa}
+
+\bibitem{simpleqa_tavily2025}
+Tavily (2025).
+\textit{Tavily Achieves SOTA on SimpleQA Benchmark}.
+Retrieved from \url{https://blog.tavily.com/tavily-evaluation-part-1-tavily-achieves-sota-on-simpleqa-benchmark/}
+
+\bibitem{simpleqa_decoder2024}
+The Decoder (2024).
+\textit{OpenAI Releases SimpleQA Benchmark to Test AI Model Factual Accuracy}.
+Retrieved from \url{https://the-decoder.com/openai-releases-simpleqa-benchmark-to-test-ai-model-factual-accuracy/}
+
+\bibitem{simpleqa_felo2025}
+Felo AI (2025).
+\textit{Felo AI Achieves 91.2 Percent Accuracy on SimpleQA}.
+Retrieved from \url{https://felo.ai/blog/felo-simpleqa-accuracy/}
+
+\bibitem{simpleqa_medium2024}
+AI in Transit (2024).
+\textit{OpenAI's New QA Benchmark: SimpleQA}.
+Medium. Retrieved from \url{https://medium.com/@aiintransit/openais-new-qa-benchmark-simpleqa-ed70ee304517}
+
+\bibitem{simpleqa_marktech2_2024}
+MarkTechPost (2024).
+\textit{OpenAI Releases SimpleQA: A New AI Benchmark}.
+Retrieved from \url{https://www.marktechpost.com/2024/10/30/openai-releases-simpleqa-a-new-ai-benchmark-that-measures-the-factuality-of-language-models/}
+
+\bibitem{simpleqa_ukgov2024}
+UK Government BEIS (2024).
+\textit{SimpleQA Evaluation Framework}.
+Retrieved from \url{https://ukgovernmentbeis.github.io/inspect_evals/evals/knowledge/simpleqa/index.html}
+
+% SEAL-0 Benchmark
+\bibitem{sealqa2025}
+Vu, T., et al. (2025).
+\textit{SealQA: SEarch-Augmented Language model Question Answering}.
+arXiv preprint arXiv:2506.01062.
+Retrieved from \url{https://arxiv.org/abs/2506.01062}
+
+\bibitem{sealqa_huggingface2025}
+Research Collaboration (2025).
+\textit{SealQA Paper Discussion}.
+Hugging Face. Retrieved from \url{https://huggingface.co/papers/2506.01062}
+
+\bibitem{seal_leaderboard2025}
+Scale AI (2025).
+\textit{SEAL Leaderboards}.
+Retrieved from \url{https://scale.com/leaderboard}
+
+\bibitem{seal_blog2024}
+Scale AI (2024).
+\textit{Introducing SEAL Leaderboards}.
+Retrieved from \url{https://scale.com/blog/leaderboard}
+
+% ========== CATEGORY 4: SENTIENT-SPECIFIC DATA ==========
+
+% Open Deep Search (ODS)
+\bibitem{ods2025}
+Alzubi, S., Brooks, C., Chiniya, P., Contente, E., von Gerlach, C., Irwin, L., Jiang, Y., Kaz, A., Nguyen, W., Oh, S., Tyagi, H., and Viswanath, P. (2025).
+\textit{Open Deep Search: Democratizing Search with Open-source Reasoning Agents}.
+arXiv preprint arXiv:2503.20201.
+Retrieved from \url{https://arxiv.org/abs/2503.20201}
+
+\bibitem{ods_github2025}
+Sentient AGI (2025).
+\textit{OpenDeepSearch Repository}.
+GitHub. Retrieved from \url{https://github.com/sentient-agi/OpenDeepSearch}
+
+\bibitem{ods_cointribune2025}
+CoinTribune (2025).
+\textit{Sentient is Revolutionizing AI Research with a Solution that Surpasses GPT-4o and Perplexity}.
+Retrieved from \url{https://www.cointribune.com/en/sentient-is-revolutionizing-ai-research-with-a-solution-that-surpasses-gpt-4o-and-perplexity/}
+
+\bibitem{ods_venturebeat2025}
+VentureBeat (2025).
+\textit{Open Deep Search Arrives to Challenge Perplexity and ChatGPT Search}.
+Retrieved from \url{https://venturebeat.com/ai/open-deep-search-arrives-to-challenge-perplexity-and-chatgpt-search}
+
+\bibitem{ods_hackernoon2025}
+HackerNoon (2025).
+\textit{Why is Sentient Challenging the AI Giants with Open Deep Search}.
+Retrieved from \url{https://hackernoon.com/why-is-sentient-challenging-the-ai-giants-with-open-deep-search}
+
+\bibitem{ods_cointelegraph2025}
+CoinTelegraph (2025).
+\textit{Sentient AI Search Outperforms GPT-4o, Perplexity}.
+Retrieved from \url{https://cointelegraph.com/news/sentient-ai-search-outperforms-gpt4o-perplexity}
+
+\bibitem{ods_dataconomy2025}
+Dataconomy (2025).
+\textit{Sentient's Advanced Open Source AI Reasoning Comes to Sentient Chat}.
+Retrieved from \url{https://dataconomy.com/2025/04/02/sentients-advanced-open-source-ai-reasoning-comes-to-sentient-chat/}
+
+\bibitem{ods_blockworks2025}
+Blockworks (2025).
+\textit{Decentralized AI Firm ODS Launch}.
+Retrieved from \url{https://blockworks.co/news/decentralized-ai-firm-ods-launch}
+
+% ROMA (Recursive Open Meta-Agent)
+\bibitem{roma2025}
+Sentient (2025).
+\textit{ROMA: The Backbone for Open-Source Meta-Agents}.
+Retrieved from \url{https://www.sentient.xyz/blog/recursive-open-meta-agent}
+
+\bibitem{roma_github2025}
+Sentient AGI (2025).
+\textit{ROMA Repository}.
+GitHub. Retrieved from \url{https://github.com/sentient-agi/ROMA}
+
+\bibitem{roma_twitter2025}
+Tyagi, H. (2025).
+\textit{ROMA SEAL-0 Performance Announcement}.
+X (Twitter). Retrieved from \url{https://x.com/hstyagi/status/1964019416099610961}
+
+\bibitem{roma_twitter2_2025}
+Doan, L. (2025).
+\textit{ROMA Benchmark Results}.
+X (Twitter). Retrieved from \url{https://x.com/linhdoan02/status/1963860994960351574}
+
+\bibitem{roma_daily2025}
+Daily.dev (2025).
+\textit{ROMA Framework Discussion}.
+Retrieved from \url{https://app.daily.dev/posts/wqthssmzq}
+
+% Dobby - Community-Owned AI Model
+\bibitem{dobby2025}
+CoinTelegraph (2025).
+\textit{Sentient Records 650K NFT Mint for Decentralized Loyal AI Model}.
+Retrieved from \url{https://cointelegraph.com/news/sentient-record-650k-nft-mint-decentralized-loyal-ai-model}
+
+\bibitem{dobby_huggingface2025}
+Sentient AGI (2025).
+\textit{Dobby-Unhinged-Llama-3.3-70B Model}.
+Hugging Face. Retrieved from \url{https://huggingface.co/SentientAGI/Dobby-Unhinged-Llama-3.3-70B}
+
+\bibitem{dobby_fireworks2025}
+Fireworks AI (2025).
+\textit{Dobby-Unhinged-Llama-3.3-70B-New Model}.
+Retrieved from \url{https://fireworks.ai/models/sentientfoundation/dobby-unhinged-llama-3-3-70b-new}
+
+\bibitem{dobby_cryptoslate2025}
+CryptoSlate (2025).
+\textit{Sentient's AI Chatbot Dobby Plus Challenges OpenAI with Open Source User-Governed AI Model}.
+Retrieved from \url{https://cryptoslate.com/sentients-ai-chatbot-dobby-plus-challenges-openai-with-open-source-user-governed-ai-model/}
+
+\bibitem{dobby_ainvest2025}
+AInvest (2025).
+\textit{Sentient Dobby: 650K Humans Mint NFTs to Revolutionize AI Ownership}.
+Retrieved from \url{https://www.ainvest.com/news/sentient-dobby-650k-humans-mint-nfts-revolutionize-ai-ownership-2502/}
+
+\bibitem{dobby_icoholder2025}
+ICOHolder (2025).
+\textit{Sentient Breaks NFT Minting Records with Dobby AI Model}.
+Retrieved from \url{https://icoholder.com/en/news/sentient-breaks-nft-minting-records-with-dobby-ai-model}
+
+\bibitem{dobby_invezz2025}
+Invezz (2025).
+\textit{Sentient Completes Record-Breaking Ownership Mint for World's First Decentralized Loyal AI Model}.
+Retrieved from \url{https://invezz.com/news/2025/02/06/sentient-completes-record-breaking-ownership-mint-for-worlds-first-decentralized-loyal-ai-model/}
+
+\bibitem{dobby_mini_hf2025}
+Sentient AGI (2025).
+\textit{Dobby-Mini-Unhinged-Llama-3.1-8B Model}.
+Hugging Face. Retrieved from \url{https://huggingface.co/SentientAGI/Dobby-Mini-Unhinged-Llama-3.1-8B}
+
+% OML 1.0 - Model Fingerprinting
+\bibitem{oml2025}
+Sentient (2025).
+\textit{Fingerprinting: Enabling Open-Source Monetization on the Model Layer}.
+Retrieved from \url{https://www.sentient.xyz/blog/fingerprinting-enabling-open-source-monetization-on-the-model-layer}
+
+\bibitem{oml_github2025}
+Sentient AGI (2025).
+\textit{OML-1.0-Fingerprinting Repository}.
+GitHub. Retrieved from \url{https://github.com/sentient-agi/OML-1.0-Fingerprinting}
+
+% Other Sentient Repositories
+\bibitem{sentient_enclaves2025}
+Sentient AGI (2025).
+\textit{Sentient-Enclaves-Framework Repository}.
+GitHub. Retrieved from \url{https://github.com/sentient-agi/Sentient-Enclaves-Framework}
+
+\bibitem{sentient_agent2025}
+Sentient AGI (2025).
+\textit{Sentient-Agent-Framework Repository}.
+GitHub. Retrieved from \url{https://github.com/sentient-agi/Sentient-Agent-Framework}
+
+\bibitem{sentient_social2025}
+Sentient AGI (2025).
+\textit{Sentient-Social-Agent Repository}.
+GitHub. Retrieved from \url{https://github.com/sentient-agi/Sentient-Social-Agent}
+
+\end{thebibliography}
+
+\thispagestyle{plain}
+\vspace*{3cm} % push it to the middle of the page
+
+\begin{center}
+    \textbf{Disclaimer}
+\end{center}
+
+\noindent
+This report paper was solely researched, written, and compiled by the author. 
+All figures and visualizations were designed using AI-assisted tools. 
+The study and writing process took over a week of independent effort. 
+If you have any concerns, feedback, or objections regarding the content, 
+please reach out on Twitter at \texttt{@Shirooni7723}.
+
+
+\vspace{1cm}
+\begin{center}
+    \textit{This work is licensed under a Creative Commons Attribution 4.0 International License (CC BY 4.0).}
+\end{center}
+
+
+\end{document}
