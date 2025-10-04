@@ -172,7 +172,7 @@ pdflatex main.tex
 
 ## Additional Resources
 
-- **Video Explanation:** [YouTube Link - Coming Soon]
+- **Video Explanation:** [YouTube Link](https://youtu.be/ePZoHPWdYHM?si=0xu86j51ZEVpSmSs)
 - **Twitter Thread:** [@Shirooni7723](https://twitter.com/Shirooni7723)
 - **Sentient Official:** [sentient.xyz](https://sentient.xyz)
 - **Builder Program:** [sentient.xyz/builder-program](https://sentient.xyz/builder-program)
@@ -226,7 +226,9 @@ Under the following terms:
 
 - **Author:** Shiro Oni
 - **Twitter:** [@Shirooni7723](https://twitter.com/Shirooni7723)
-
+- **Report Paper:** [The Open Intelligence Paradigm](https://zenodo.org/records/17265629)
+- **Video Explanation:** [YouTube Link](https://youtu.be/ePZoHPWdYHM?si=0xu86j51ZEVpSmSs)
+  
 ## Disclaimer
 
 This report represents independent analysis conducted outside any institutional or corporate affiliation. The views, interpretations, and projections are entirely my own. This work was created as a contribution to the Sentient builder/educator community and broader discussions about open-source AI infrastructure.
